@@ -33,3 +33,13 @@ document.querySelector('#login-button').onclick = () =>{
 document.querySelector('#close-login-button').onclick = () =>{
     loginForm.classList.remove('active');
 }
+
+let registerForm = document.querySelector('.register-form-container');
+
+document.querySelector('#create-account').onclick = () =>{
+    registerForm.classList.toggle('active');
+}
+
+document.querySelector('#close-register-button').onclick = () =>{
+    registerForm.classList.remove('active');
+}

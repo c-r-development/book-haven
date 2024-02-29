@@ -518,7 +518,7 @@ section{
     color:var(--black) !important;
     height:4rem !important;
     width:4rem !important;
-}
+} 
 
 .swiper-button-next::after,
 .swiper-button-prev::after{
@@ -529,7 +529,41 @@ section{
 .swiper-button-prev:hover{
     background:var(--black);
     color: #fff;
+} 
+
+.arrivals .arrivals-slider .box{
+    display: flex;
+    align-items: center;
+    gap:1.5rem;
+    padding:2rem 1rem;
+    border:var(--border);
+    margin:1rem 0;
 }
+
+.arrivals .arrivals-slider .box:hover{
+    border: var(--border-hover);
+}
+
+.arrivals .arrivals-slider .box .image img{
+    height: 15rem;
+}
+
+.arrivals .arrivals-slider .box .content h3{
+    font-size: 2rem;
+    color:var(--black);
+}
+
+.arrivals .arrivals-slider .box .content .price{
+    font-size: 2.2rem;
+    color:var(--black);
+    padding-bottom: .5rem;
+}
+
+.arrivals .arrivals-slider .box .content .stars i{
+    font-size: 1.5rem;
+    color: var(--orange);
+}
+
 
 /* media queries */
 

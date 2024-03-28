@@ -44,6 +44,9 @@ document.querySelector('#close-register-button').onclick = () =>{
     registerForm.classList.remove('active');
 }
 
+
+
+
 var swiper = new Swiper(".books-slider", {
     loop:true,
     centeredSlides: true,
@@ -134,3 +137,13 @@ var swiper = new Swiper(".reviews-slider", {
         },
     },
 });
+
+let shoppingCart = document.querySelector('.shopping-cart');
+
+document.querySelector('.fa-shopping-cart').onclick = () =>{
+    shoppingCart.classList.add('active');
+}
+
+document.querySelector('.close-cart-button').onclick = () =>{
+    shoppingCart.classList.remove('active');
+}

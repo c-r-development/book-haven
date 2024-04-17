@@ -23,8 +23,10 @@
                 </form>
                 <div class="icons">
                     <div id="search-button" class="fas fa-search"></div>
-                    <a href="#" class="fas fa-shopping-cart"></a>
-                    <a href="#" class="fas fa-heart"></a>
+                    <div class="cart-container">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="cart-count"></span>
+                    </div>
                     <div id="login-button" class="fas fa-user"></div>
                 </div>
             </div>
@@ -142,9 +144,8 @@
                     <div class="swiper-slide box">
 
                         <div class="icons">
-                            <a href="#" class="fas fa-search"></a>
-                            <a href="#" class="fas fa-heart"></a>
-                            <a href="#" class="fas fa-eye"></a>
+                            <a class="fas fa-search"></a>
+                            <a class="fas fa-eye"></a>
                         </div>
 
                         <div class="image">
@@ -153,7 +154,7 @@
                         <div class="content">
                             <h3>featured books</h3>
                             <div class="price"> $15.99<span>$20.99</span></div>
-                            <a href="#" class="btn" onclick="addToCart({title: 'hard at work', price: '10.00$', image: 'images/book-1.png'} )">add to cart</a>
+                            <a class="btn" onclick="addToCart({title: 'hard at work', price: '10.00$', image: 'images/book-1.png'} )">add to cart</a>
                         </div>
 
                     </div>
@@ -162,7 +163,6 @@
 
                         <div class="icons">
                             <a href="#" class="fas fa-search"></a>
-                            <a href="#" class="fas fa-heart"></a>
                             <a href="#" class="fas fa-eye"></a>
                         </div>
 
@@ -181,7 +181,6 @@
 
                         <div class="icons">
                             <a href="#" class="fas fa-search"></a>
-                            <a href="#" class="fas fa-heart"></a>
                             <a href="#" class="fas fa-eye"></a>
                         </div>
 
@@ -200,7 +199,6 @@
 
                         <div class="icons">
                             <a href="#" class="fas fa-search"></a>
-                            <a href="#" class="fas fa-heart"></a>
                             <a href="#" class="fas fa-eye"></a>
                         </div>
 
@@ -219,7 +217,6 @@
 
                         <div class="icons">
                             <a href="#" class="fas fa-search"></a>
-                            <a href="#" class="fas fa-heart"></a>
                             <a href="#" class="fas fa-eye"></a>
                         </div>
 
@@ -238,7 +235,6 @@
 
                         <div class="icons">
                             <a href="#" class="fas fa-search"></a>
-                            <a href="#" class="fas fa-heart"></a>
                             <a href="#" class="fas fa-eye"></a>
                         </div>
 
@@ -581,12 +577,59 @@
             </div>
         </section>
 
+
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
         <!-- Linking the external js file -->
         <script src="scripts/script.js"></script>
 
         <script>
+
+            function showMessage(message) {
+                // Create a div element for the message
+                var messageDiv = document.createElement("div");
+                messageDiv.textContent = message;
+                messageDiv.className = "cart-message";
+                
+                // Append the message div to the body
+                document.body.appendChild(messageDiv);
+                
+                // Remove the message after 3 seconds
+                setTimeout(function() {
+                    messageDiv.remove();
+                }, 3000);
+            }
+
+            
+            function updateCartIcon() {
+                var cartItemCount = document.getElementById("cart").getElementsByTagName("li").length;
+                var cartContainer = document.querySelector(".cart-container");
+                var cartBubble = cartContainer.querySelector(".cart-count");
+
+                // If there are items in the cart, display the bubble with the count
+                if (cartItemCount > 0) {
+                    // If the bubble doesn't exist, create it
+                    if (!cartBubble) {
+                        cartBubble = document.createElement("span");
+                        cartBubble.textContent = cartItemCount;
+                        cartBubble.className = "cart-count";
+                        cartContainer.appendChild(cartBubble);
+                    } else {
+                        // If the bubble already exists, just update its text content
+                        cartBubble.textContent = cartItemCount;
+                    }
+                    
+                    // Show the cart bubble
+                    cartBubble.style.display = 'flex';
+                } else {
+                    // If no items in the cart, remove the bubble if it exists
+                    if (cartBubble) {
+                        cartBubble.remove();
+                    }
+                }
+            }
+
+            
             // Function to handle adding items to the cart
             function addToCart(item) {
                 var itemCount = 0;
@@ -617,6 +660,7 @@
                     cart.removeChild(listItem); // Remove the item from the cart
                     itemCount = cart.getElementsByTagName("li").length;
                     document.getElementById("total-items").textContent=itemCount;
+                    updateCartIcon();
                 };
         
                 // Append the delete button to the list item
@@ -624,16 +668,16 @@
                 
                 listItem.append(bookDetail);
                 
-        
-              
-        
                 // Append the list item to the cart
                 cart.appendChild(listItem);
 
                 itemCount = cart.getElementsByTagName("li").length;
                 document.getElementById("total-items").textContent=itemCount;
+                showMessage("Item added to cart!");
+                updateCartIcon();
+                
             }
-        </script>
 
+        </script>
     </body>
 </html>

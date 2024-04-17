@@ -147,3 +147,13 @@ document.querySelector('.fa-shopping-cart').onclick = () =>{
 document.querySelector('.close-cart-button').onclick = () =>{
     shoppingCart.classList.remove('active');
 }
+
+let favoriteBooks = document.querySelector('.favorite-books');
+
+document.querySelector('.fa-heart').onclick = () =>{
+    favoriteBooks.classList.add('active');
+}
+
+document.querySelector('.close-favorites-button').onclick = () =>{
+    favoriteBooks.classList.remove('active');
+}
